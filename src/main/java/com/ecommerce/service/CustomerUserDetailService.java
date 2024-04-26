@@ -29,21 +29,19 @@ public class CustomerUserDetailService implements UserDetailsService {
 //		Load user from database;		
 		if(username.isEmpty())
 		{
-			System.out.println("yes its empty");			
+			System.out.println("yes its empty");
+			return null;
 		}
 		else
 		{
 			System.out.println(username);
 			System.out.println("no its not empty");
-		}
-		
-		User user=userRepository.findByEmail(username);
-		System.out.println(user);
-		return user;
-	}
-	
-	
 
-	
+			User user=userRepository.findByEmail(username);
+			System.out.println(user);
+			return user;
+
+		}
+	}
 
 }
