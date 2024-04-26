@@ -58,7 +58,8 @@ public class SecuirtyConfig {
 					CorsConfiguration cfg= new CorsConfiguration();
 					cfg.setAllowedOrigins(Arrays.asList(
 							"http://localhost:3000/",
-							"https://avatar-ecommerce.vercel.app/"
+							"https://avatar-ecommerce.vercel.app/",
+							"https://vastra-sable.vercel.app/"
 							));
 					cfg.setAllowedMethods(Collections.singletonList("*"));
 					cfg.setAllowCredentials(true);
