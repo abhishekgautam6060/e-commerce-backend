@@ -124,17 +124,23 @@ public class AuthController {
 			
 
 			UserDetails userDetails = userDetailsService.loadUserByUsername(createdUser.getEmail());
-			String token = this.helper.generateToken(userDetails);		
-			JwtResponse response = JwtResponse.builder()				
-					.jwtToken(token)
-					.username(userDetails.getUsername())
-					.message("Sigin Successfully")
-					.build();
-				
+			String token = this.helper.generateToken(userDetails);
+			if(token.isEmpty()){
+				JwtResponse response = JwtResponse.builder()
+						.message("Token is empty")
+						.build();
+				return new ResponseEntity<>(response, HttpStatus.OK);
+			}
+			else{
+				JwtResponse response = JwtResponse.builder()
+						.jwtToken(token)
+						.username(userDetails.getUsername())
+						.message("Sigin Successfully")
+						.build();
+
 				String usernameFormToken = this.helper.getUsernameFromToken(token);
 				System.out.println(usernameFormToken);
-			 return new ResponseEntity<>(response, HttpStatus.OK);		
+				return new ResponseEntity<>(response, HttpStatus.OK);
+			}
 	}
-		
-			
 }
